@@ -178,7 +178,7 @@ export default function Navbar() {
               closeMenu();
               openModal();
             }}
-            className="block mx-2 text-center px-40 my-2.5 py-2.5 bg-orange-500 hover:bg-orange-400 text-white rounded-xl"
+            className="block mx-2 text-center px-36 my-2.5 py-2.5 bg-orange-500 hover:bg-orange-400 text-white rounded-xl"
           >
             Log in
           </button>

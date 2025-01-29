@@ -113,7 +113,7 @@ export default function Hero() {
   return (
     <motion.div 
       ref={ref}
-      className="xl:mx-56 my-[140px] text-center"
+      className="xl:mx-56 my-40 text-center"
       variants={containerVariants}
       initial="hidden"
       animate= {controls}

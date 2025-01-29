@@ -162,7 +162,7 @@ export default function Navbar() {
 
         {/* Mobile Dropdown Menu */}
         <ul
-          className={`xl:hidden absolute top-full left-0 w-full bg-white shadow-md transition-all duration-1000 ease-in-out ${
+          className={`xl:hidden absolute top-full left-0 w-full bg-white p-3 shadow-md transition-all duration-1000 ease-in-out ${
             menuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
           } overflow-hidden`}
         >
@@ -178,7 +178,7 @@ export default function Navbar() {
               closeMenu();
               openModal();
             }}
-            className="block mx-2 text-center px-36 my-2.5 py-2.5 bg-orange-500 hover:bg-orange-400 text-white rounded-xl"
+            className="block w-full py-3 mt-3 bg-orange-500 hover:bg-orange-400 text-white rounded-xl"
           >
             Log in
           </button>

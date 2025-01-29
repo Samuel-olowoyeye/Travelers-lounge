@@ -11,7 +11,7 @@ export default function AboutUs() {
     // InView Hook to detect when the component is in the viewport
      
     const { ref, inView } = useInView({
-      threshold: 0.3, // Trigger animation when 30% of the component is visible
+      threshold: 0, // Trigger animation when 30% of the component is visible
       triggerOnce: true, // Animate only the first time it comes into view
     });
   

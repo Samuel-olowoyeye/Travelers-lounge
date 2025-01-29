@@ -8,7 +8,7 @@ import { useInView } from "react-intersection-observer";
 export default function Services() {
 
     const { ref, inView } = useInView({
-            threshold: 0.3, // Trigger animation when 30% of the component is visible
+            threshold: 0, // Trigger animation when 30% of the component is visible
             triggerOnce: true, // Animate only the first time it comes into view
           });
         

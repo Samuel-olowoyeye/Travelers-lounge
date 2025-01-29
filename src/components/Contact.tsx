@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 export default function ContactUs() {
 
   const { ref, inView } = useInView({
-        threshold: 0.3, // Trigger animation when 30% of the component is visible
+        threshold: 0, // Trigger animation when 30% of the component is visible
         triggerOnce: true, // Animate only the first time it comes into view
       });
     

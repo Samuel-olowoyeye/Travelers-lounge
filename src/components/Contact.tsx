@@ -5,7 +5,6 @@ import { useInView } from "react-intersection-observer";
 import { useFormik } from 'formik';
 import { contactValidationSchema } from '@/schemas/contactValidateSchema';
 import toast from 'react-hot-toast';
-// import toast from 'react-hot-toast';
 
 
 export default function ContactUs() {
@@ -54,19 +53,27 @@ export default function ContactUs() {
 
         // Use Formik for form validation and handling
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          const { values, errors, handleBlur, handleChange, handleSubmit,touched, resetForm } = useFormik({
+          const {values, errors, touched, handleBlur, handleChange, handleSubmit, validateForm, resetForm } = useFormik({
             initialValues: {
               name: "",
               email: "",
               phone: "",
               message: "",
             },
-            validationSchema: contactValidationSchema,  // Use the Yup schema
-      
-             onSubmit : (values, { resetForm }) => {
-              console.log("Form Submitted:", values);
-              toast.success("Appointment Booked Successfully");
-              resetForm(); // Reset the form after successful submission
+            validationSchema: contactValidationSchema,
+            validateOnChange: false, // Disable validation on change
+            validateOnBlur: false, // Disable validation on blur
+            onSubmit: async (values) => {
+              // Manually trigger validation before submission
+              const errors = await validateForm();
+        
+              if (Object.keys(errors).length === 0) {
+                console.log("Form Submitted:", values);
+                toast.success("Appointment Booked Successfully");
+                resetForm();
+              } else {
+                console.log("Form has errors:", errors);
+              }
             },
           });
 
@@ -81,12 +88,7 @@ export default function ContactUs() {
               variants={headingVariants}
               initial="hidden"
               animate= {controls}
-              whileHover={{
-                scale: 1.1, // Slightly scale up the button
-    
-                transition: { stiffness: 300, type: 'spring' }
-              }}
-            className="text-3xl font-bold text-center text-slate-700 mb-6">
+            className="text-2xl font-bold text-center text-slate-700 mb-6">
               Contact Us
             </motion.h1>
             <motion.p
@@ -108,7 +110,7 @@ export default function ContactUs() {
             className='px-4 py-3 md:px-8 md:py-4 lg:px-16 lg:py-8 shadow-lg xl:mx-[350px] rounded-xl xl:px-16 xl:py-8 '>
 
               <div className="mt-5">
-                  <label htmlFor="name" className="block py-2.5  text-md font-semibold text-slate-600">
+                  <label htmlFor="name" className="block py-2.5 text-sm sm:text-base font-semibold text-slate-600">
                     Full Name
                 </label>
                 <input 
@@ -119,13 +121,13 @@ export default function ContactUs() {
                   id="name"
                   name="name"
                   placeholder="Enter your name"
-                  className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-orange-400"
+                  className="w-full px-4 py-2 sm:py-2.5 text-base border border-slate-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-orange-400 sm:placeholder:text-base placeholder:text-sm"
                 />
-                {errors.name &&  <div className="text-red-500 text-sm">{errors.name}</div>}
+                {errors.name &&  <div className="text-red-500 text-xs mt-1">{errors.name}</div>}
               </div>
 
               <div className="mt-4">
-                  <label htmlFor="name" className="block pb-2.5 text-md font-semibold text-slate-600">
+                  <label htmlFor="name" className="block pb-2.5 text-sm sm:text-base font-semibold text-slate-600">
                     Email
                 </label>
                 <input
@@ -136,13 +138,13 @@ export default function ContactUs() {
                   id="email"
                   name="email"
                   placeholder="Enter your email address"
-                  className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-orange-400"
+                  className="w-full px-4 py-2 sm:py-2.5 text-base border border-slate-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-orange-400 sm:placeholder:text-base placeholder:text-sm"
                 />
-                {errors.email && <div className="text-red-500 text-sm">{errors.email}</div>}
+                {errors.email && <div className="text-red-500 text-xs mt-1">{errors.email}</div>}
               </div>
 
               <div className="mt-4  ">
-                  <label htmlFor="name" className="block pb-2.5 text-md font-semibold text-slate-600">
+                  <label htmlFor="name" className="block pb-2.5 text-sm sm:text-base font-semibold text-slate-600">
                     Phone Number
                 </label>
                 <input 
@@ -153,13 +155,13 @@ export default function ContactUs() {
                   id="phone"
                   name="phone"
                   placeholder="Enter your phone number"
-                  className="w-full px-4 py-2 border border-slate-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-orange-400"
+                  className="w-full px-4 py-2 sm:py-2.5 border border-slate-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-orange-400 sm:placeholder:text-base placeholder:text-sm"
                 />
-                {errors.phone && <div className="text-red-500 text-sm">{errors.phone}</div>}
+                {errors.phone && <div className="text-red-500 text-xs mt-1">{errors.phone}</div>}
               </div>
 
               <div className="mt-4 ">
-                  <label htmlFor="name" className="block pb-2.5 text-md font-semibold text-slate-600">
+                  <label htmlFor="name" className="block pb-2.5 text-sm sm:text-base font-semibold text-slate-600">
                     Drop your message
                 </label>
                 <textarea
@@ -170,9 +172,9 @@ export default function ContactUs() {
                   name="message"
                   rows={6}
                   placeholder="Enter your message"
-                  className="w-full px-4 text-xl border border-slate-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-orange-400 ">
+                  className="w-full px-4 py-2 text-base border border-slate-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-orange-400 sm:placeholder:text-base placeholder:text-sm ">
               </textarea>
-              {errors.message && <div className="text-red-500 text-sm">{errors.message}</div>}
+              {errors.message && <div className="text-red-500 text-xs mt-1">{errors.message}</div>}
               </div>
 
               <div className="mt-4 mb-6 ">

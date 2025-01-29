@@ -57,16 +57,16 @@ export default function Testimonial() {
 
   return (
     <div id="testimonials"
-    className='h-auto px-6  pb-8 pt-16 '>
+    className='h-auto px-6  pb-8 pt-8 '>
         <motion.div 
          ref={ref}
          variants={containerVariants}
          initial="hidden"
          animate= {controls}
-        className='mb-20'>
+        className='mb-16'>
             <motion.h1 
             variants={itemVariants}
-            className="text-3xl font-bold text-center mb-5  text-slate-700 "> Testimonials </motion.h1>
+            className="text-2xl font-bold text-center mb-5  text-slate-700 "> Testimonials </motion.h1>
             <motion.p 
             variants={textVariants}
             className='font-semibold text-base xl:text-lg text-center leading-6 text-slate-600'>What Our Client Are Saying About Us</motion.p>
@@ -84,7 +84,7 @@ export default function Testimonial() {
           }}
             transition={{type: 'spring', stiffness: 300,}}
 
-        className="max-w-screen-md shadow-lg rounded-xl mb-16 px-6 ">
+        className="max-w-screen-md shadow-md rounded-xl mb-16 px-6 ">
           <div className="flex items-center mb-4 text-yellow-300 px-6">
             <svg className="w-5 h-5 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
                 <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
@@ -103,13 +103,13 @@ export default function Testimonial() {
             </svg>
         </div>
         <blockquote className='px-6'>
-            <p className="text-lg font-semibold text-slate-700">&quot;Our trip was nothing short of amazing! From hassle-free booking to breathtaking destinations, everything was perfectly planned. The attention to detail and seamless experience made our journey unforgettable. Highly recommend it for anyone looking to explore the world in style!&quot;</p>
+            <p className="text-base  font-semibold text-slate-700">&quot; Our trip was nothing short of amazing! From hassle-free booking to breathtaking destinations, everything was perfectly planned. The attention to detail and seamless experience made our journey unforgettable. Highly recommend it for anyone looking to explore the world in style!&quot;</p>
         </blockquote>
         <figcaption className="flex px-6 pb-4 items-center mt-6 space-x-2 rtl:space-x-reverse">
             <Image width={200} height={100}  className="w-10 h-10 rounded-full object-cover" src="/test image 1.jpg" alt="profile picture"/>
-            <div className="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-300 dark:divide-gray-700">
-                <cite className="pe-3 font-medium text-slate-700">John Mark</cite>
-                <cite className="ps-3 text-sm text-slate-700">CEO at Prime Globals</cite>
+            <div className="flex items-center  divide-x-2 rtl:divide-x-reverse divide-gray-300 dark:divide-gray-700">
+                <cite className="pe-3 font-medium text-slate-700  ">John Mark</cite>
+                <cite className="ps-3 text-slate-700 text-sm ">CEO at Prime Globals</cite>
             </div>
         </figcaption>
     </motion.figure> 
@@ -137,7 +137,7 @@ export default function Testimonial() {
             </svg>
         </div>
         <blockquote className='px-6'>
-            <p className="text-lg  font-semibold text-slate-700">&quot;I couldn&apos;t have asked for a better travel experience! The itinerary was thoughtfully crafted, the accommodations were top-notch, and the guided tours brought every destination to life. Everything was so well-organized, I could just relax and enjoy the adventure. Truly a trip of a lifetime!&quot;</p>
+            <p className="text-base   font-semibold text-slate-700">&quot; I couldn&apos;t have asked for a better travel experience! The itinerary was thoughtfully crafted, the accommodations were top-notch, and the guided tours brought every destination to life. Everything was so well-organized, I could just relax and enjoy the adventure. Truly a trip of a lifetime!&quot;</p>
         </blockquote>
         <figcaption className="flex items-center px-6 pb-4 mt-6 space-x-2 rtl:space-x-reverse">
             <Image width={200} height={100}  className="w-10 h-10 rounded-full object-cover" src="/test image 2.jpg" alt="profile picture"/>
@@ -171,7 +171,7 @@ export default function Testimonial() {
             </svg>
         </div>
         <blockquote className='px-6'> 
-            <p className="text-lg font-semibold text-slate-700">&quot;Our vacation was absolutely perfect! From the moment we booked to the last day of our trip, everything was smooth and stress-free. The customer service was exceptional, and the local recommendations made us feel like insiders. Can’t wait to embark on our next getaway!&quot;</p>
+            <p className="text-base  font-semibold text-slate-700">&quot; Our vacation was absolutely perfect! From the moment we booked to the last day of our trip, everything was smooth and stress-free. The customer service was exceptional, and the local recommendations made us feel like insiders. Can’t wait to embark on our next getaway!&quot;</p>
         </blockquote>
         <figcaption className="flex px-6 pb-4 items-center mt-6 space-x-2 rtl:space-x-reverse">
             <Image width={200} height={100}  className="w-10 h-10 rounded-full object-cover" src="/test image 3.jpg" alt="profile picture"/>

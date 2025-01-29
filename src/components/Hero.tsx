@@ -71,19 +71,31 @@ export default function Hero() {
 
   
     // Use Formik for form validation and handling
-    const { values, errors, handleBlur, handleChange, handleSubmit, resetForm } = useFormik({
+    const { values, errors, handleBlur, handleChange, handleSubmit, validateForm, resetForm } = useFormik({
       initialValues: {
         email: "",
         password: "",
         confirmPassword: "",
       },
-      validationSchema: signInValidateSchema,  // Use the Yup schema
+      validationSchema: signInValidateSchema,
+      validateOnChange: false, // Disable validation on change
+      validateOnBlur: false,   // Use the Yup schema
 
-       onSubmit : (values, { resetForm }) => {
-        console.log("Form Submitted:", values);
-        resetForm(); // Reset the form after successful submission
-        // toast.success("Appointment booked Successfully");
-        toast.success("Account Created Successfully")
+       onSubmit : async (values, { resetForm }) => {
+
+        // Manually trigger validation before submission
+        const errors = await validateForm();
+
+        if (Object.keys(errors).length === 0) {
+          console.log("Form Submitted:", values);
+          resetForm(); // Reset the form after successful submission
+          // toast.success("Appointment booked Successfully");
+          toast.success("Account Created Successfully")
+        } else {
+          console.log("Form has errors:", errors);
+        }
+
+        
 
         closeModal(); // Optionally close the modal after form submission
       },
@@ -108,7 +120,7 @@ export default function Hero() {
     >
       {/* Heading */}
       <motion.h1
-        className="xl:w-full md:px-6 md:pt-10 xl:pt-0 px-4 mb-4 mx-2 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl xl:text-6xl dark:text-white"
+        className="xl:w-full md:px-6 md:pt-10 xl:pt-0 px-4 mb-4 mx-2 text-xl font-extrabold leading-none tracking-tight text-gray-900 sm:text-5xl md:text-5xl xl:text-[54px] dark:text-white"
         variants={itemVariants}
       >
         Find your next adventure with us.
@@ -116,7 +128,7 @@ export default function Hero() {
 
       {/* Paragraph */}
       <motion.p
-        className="xl:w-full px-2 mb-6 text-xl font-normal text-gray-500 xl:text-xl sm:px-16 xl:px-44 dark:text-gray-400"
+        className="xl:w-full px-2 mb-6 text-base sm:text-xl font-normal text-gray-500 xl:text-xl sm:px-16 xl:px-44 dark:text-gray-400"
         variants={itemVariants}
       >
         Here At Traveler&apos;s Lounge, we focus on destinations where culture,
@@ -136,7 +148,7 @@ export default function Hero() {
         <Link
         onClick={openModal} // Open modal on click
           href="#"
-          className="inline-flex  items-center justify-center px-5 py-3 text-base font-medium text-center text-white bg-orange-500 rounded-xl hover:bg-orange-400 focus:ring-4 focus:ring-orange-500 dark:focus:ring-orange-500"
+          className="inline-flex  items-center justify-center px-5 py-3 text-sm sm:text-base font-medium text-center text-white bg-orange-500 rounded-xl hover:bg-orange-400 focus:ring-4 focus:ring-orange-500 dark:focus:ring-orange-500"
         >
           Get started
           <svg

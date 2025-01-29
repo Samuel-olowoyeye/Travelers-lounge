@@ -56,7 +56,7 @@ export default function Services() {
             className="container mx-auto px-6">
                 <motion.h1 
                 variants={itemVariants}
-                className="text-3xl font-bold text-center text-slate-700 mb-12">Our Services</motion.h1>
+                className="text-2xl font-bold text-center text-slate-700 mb-8">Our Services</motion.h1>
                 <motion.div 
                 variants={servicesVariants}
                 className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -73,8 +73,8 @@ export default function Services() {
                             height={150}
                             className="rounded-md mb-4 object-cover w-full h-40"
                         />
-                        <h3 className="text-2xl font-semibold text-slate-600 mb-2">Flight Booking</h3>
-                        <p className="text-gray-600">Enjoy seamless flight booking services with exclusive deals and discounts tailored for you.</p>
+                        <h3 className="text-xl font-semibold text-slate-600 mb-2">Flight Booking</h3>
+                        <p className="text-gray-600 text-base">Enjoy seamless flight booking services with exclusive deals and discounts tailored for you.</p>
                     </motion.div>
                     <motion.div 
                     whileHover={{
@@ -89,8 +89,8 @@ export default function Services() {
                             height={150}
                             className="rounded-md mb-4 object-cover w-full h-40"
                         />
-                        <h3 className="text-2xl font-semibold text-slate-600 mb-2">Hotel Reservations</h3>
-                        <p className="text-gray-600">Find and book comfortable stays with our wide range of hotel options at the best rates.</p>
+                        <h3 className="text-xl font-semibold text-slate-600 mb-2">Hotel Reservations</h3>
+                        <p className="text-gray-600 text-base">Find and book comfortable stays with our wide range of hotel options at the best rates.</p>
                     </motion.div>
                     <motion.div 
                     whileHover={{
@@ -105,8 +105,8 @@ export default function Services() {
                             height={150}
                             className="rounded-md mb-4 object-cover w-full h-40"
                         />
-                        <h3 className="text-2xl font-semibold text-slate-600 mb-2">Tour Packages</h3>
-                        <p className="text-gray-600">Explore our curated tour packages designed to give you memorable travel experiences.</p>
+                        <h3 className="text-xl font-semibold text-slate-600 mb-2">Tour Packages</h3>
+                        <p className="text-gray-600 text-base">Explore our curated tour packages designed to give you memorable travel experiences.</p>
                     </motion.div>
                     <motion.div 
                     whileHover={{
@@ -121,8 +121,8 @@ export default function Services() {
                             height={150}
                             className="rounded-md mb-4 object-contain w-full h-40"
                         />
-                        <h3 className="text-2xl font-semibold text-slate-600 mb-2">Travel Insurance</h3>
-                        <p className="text-gray-600">Travel worry-free with comprehensive insurance plans that cover all your needs.</p>
+                        <h3 className="text-xl font-semibold text-slate-600 mb-2">Travel Insurance</h3>
+                        <p className="text-gray-600 text-base">Travel worry-free with comprehensive insurance plans that cover all your needs.</p>
                     </motion.div>
                     <motion.div
                         whileHover={{
@@ -137,8 +137,8 @@ export default function Services() {
                             height={150}
                             className="rounded-md mb-4 object-cover w-full h-40"
                         />
-                        <h3 className="text-2xl font-semibold text-slate-600 mb-2">Health Insurance</h3>
-                        <p className="text-gray-600">Stay protected and stress-free with comprehensive health insurance plans that cover all your medical needs.</p>
+                        <h3 className="text-xl font-semibold text-slate-600 mb-2">Health Insurance</h3>
+                        <p className="text-gray-600 text-base">Stay protected and stress-free with comprehensive health insurance plans that cover all your medical needs.</p>
                     </motion.div>
                     <motion.div 
                         whileHover={{
@@ -153,8 +153,8 @@ export default function Services() {
                             height={150}
                             className="rounded-md mb-4 object-cover w-full h-40"
                         />
-                        <h3 className="text-2xl font-semibold text-slate-600 mb-2">Accommodation</h3>
-                        <p className="text-gray-600">Unwind in accommodations designed for your ultimate comfort.</p>
+                        <h3 className="text-xl font-semibold text-slate-600 mb-2">Accommodation</h3>
+                        <p className="text-gray-600 text-base">Unwind in accommodations designed for your ultimate comfort.</p>
                     </motion.div>
                 </motion.div>
             </motion.div>

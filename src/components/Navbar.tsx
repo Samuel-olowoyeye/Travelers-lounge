@@ -3,13 +3,9 @@ import React, { useState} from 'react';
 import { AlignJustify, X, MapPin } from 'lucide-react';
 import { motion, spring, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { Link } from "react-scroll";
 import { useFormik } from 'formik';
 import { logInValidateSchema } from '@/schemas/LoginValidateSchema';
 import toast from 'react-hot-toast';
-
-
-
 
 
 export default function Navbar() {
@@ -33,6 +29,9 @@ export default function Navbar() {
     }
     return () => document.body.classList.remove("overflow-hidden");
   }, [isModalOpen]);
+
+  
+
 
   const navList = [
     { id: 1, title: "Home", href: "/" },
@@ -63,27 +62,55 @@ export default function Navbar() {
 
   
       {/* Use Formik for form validation and handling */}
-      const { values, errors, handleBlur, handleChange, handleSubmit, resetForm } = useFormik({
+      const { values, errors, handleBlur, handleChange, handleSubmit, validateForm, resetForm } = useFormik({
         initialValues: {
           email: "",
           password: "",
         },
-        validationSchema: logInValidateSchema,  // Use the Yup schema
-        onSubmit : (values) => {
+        validationSchema: logInValidateSchema,
+        validateOnChange: false, 
+        validateOnBlur: false, 
+
+
+      onSubmit : async (values, { resetForm }) => {
+        const errors = await validateForm();
+        // Use the Yup schema
+        if (Object.keys(errors).length === 0) {
           console.log("Form Submitted:", values);
-          resetForm(); // Reset the form after successful submission
-          toast.success("Login Successful")
+          resetForm(); 
+          toast.success("Login account Successful")
+        } else {
+          console.log("Form has errors:", errors);
+        }
           closeModal(); // Optionally close the modal after form submission
         },
       });
+      
+      const resetFormCallback = React.useCallback(() => resetForm(), [resetForm]);
 
-       {/* Reset form when modal is closed */}
-            React.useEffect(() => {
-              if (!isModalOpen) {
-                resetForm(); // Reset form values
-              }
-            }, [isModalOpen, resetForm]);
-    
+        React.useEffect(() => {
+          if (!isModalOpen) {
+            resetFormCallback();
+          }
+        }, [isModalOpen, resetFormCallback]);
+
+        const scrollToSection = (id: string) => {
+          const section = document.getElementById(id);
+          const offset = 100; // Adjust this value to match your header height or desired offset
+        
+          if (section) {
+            const sectionTop = section.getBoundingClientRect().top + window.scrollY; // Calculate section's position relative to the viewport
+            const scrollPosition = sectionTop - offset; // Subtract the offset from the calculated position
+        
+            window.scrollTo({
+              top: scrollPosition,
+              behavior: "smooth",
+            });
+          }
+        
+          closeMenu();
+        };
+        
 
   return (
     <motion.div
@@ -93,9 +120,9 @@ export default function Navbar() {
       animate={controls}
       className="xl:px-56 px-2 md:px-6 lg:px-16 w-full text-slate-700 py-8 relative"
     >
-      <div className=" flex justify-between bg-transparent items-center shadow-md rounded-full py-2 px-8">
-        <h1 className="flex text-center space-x-1 text-md md:text-xl xl:text-xl">
-          <MapPin className="mr-0.5 items-center" />
+      <div className=" flex justify-between bg-transparent items-center shadow-md rounded-full py-3 px-8">
+        <h1 className="flex text-center space-x-1 text-base md:text-xl xl:text-xl">
+          <MapPin className="mr-0.5 items-center w-5 h-5  sm:w-6 sm:h-6" />
           Traveler&apos;s Lounge
         </h1>
 
@@ -108,16 +135,11 @@ export default function Navbar() {
                   whileHover={{ scale: 1.1, originX: 0 }}
                   transition={{ type: 'spring', stiffness: 700 }}
                   className="relative group"
+                  onClick={() => scrollToSection(list.href)}
                 >
-                  <Link
-                      to={list.href}
-                      smooth={true}
-                      duration={500}
-                      offset={-100}> 
-                      {/* // Offset for fixed navbar */}
                   {list.title}
                   <div className="absolute w-full h-0.5 bg-orange-500/80 scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></div>
-                  </Link>
+
                 </motion.li>
               ))}
             </div>
@@ -144,10 +166,12 @@ export default function Navbar() {
             menuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
           } overflow-hidden`}
         >
-          {navList.map((item, i) => (
-            <Link key={i} href={item.href} onClick={closeMenu}>
-              <li className="py-3 px-6 border-b">{item.title}</li>
-            </Link>
+          {navList.map((item) => (
+              <li key={item.id}
+              className="py-3 px-6 border-b cursor-pointer"
+              onClick={() => scrollToSection(item.href)}>
+                {item.title}
+              </li>
           ))}
           <button
             onClick={() => {

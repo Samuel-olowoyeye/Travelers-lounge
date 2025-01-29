@@ -79,7 +79,7 @@ export default function AboutUs() {
             scale: 1.01, // Slightly scale up the button
             transition: { stiffness: 300, type: 'spring' }
           }}
-          className='mb-3 px-4 pt-2 xl:pt-0 text-xl font-extrabold leading-none tracking-tight md:text-xl lg:text-xl xl:text-2xl text-slate-700'>
+          className='mb-3 px-4 pt-2 xl:pt-0 text-2xl font-extrabold leading-none tracking-tight md:text-xl lg:text-xl xl:text-2xl text-slate-700'>
             About Us
           </motion.h2>
           
@@ -89,7 +89,7 @@ export default function AboutUs() {
             variants={BoxVariants}
             initial="hidden"
             animate= {controls}
-            className=' space-y-3 text-slate-600 px-4 py-2'>
+            className=' space-y-3 text-slate-600 px-4 py-2 text-base'>
             <motion.li
                whileHover={{
                 scale: 1.05, // Slightly scale up the button
